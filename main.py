@@ -88,7 +88,7 @@ class Point(Object):
     wheel: BaseWheel
     radius: PreciseNumber
     offset: PreciseNumber
-    def __init__(self, wheel: BaseWheel, radius: PreciseNumber, offset: PreciseNumber):
+    def __init__(self, wheel: BaseWheel, radius: PreciseNumber, offset: PreciseNumber = 0):
         """:param wheel: The Wheel which the point is anchored to
         :param radius: The distance between the center of the Wheel and the Point
         :param offset: The Point's starting offset from directly up, in radians
@@ -196,7 +196,7 @@ class Spirograph:
 
 def circle():
     root = RootWheel(Direction.CLOCKWISE, speed=1)
-    pen_point = Point(root, radius=200, offset=0)
+    pen_point = Point(root, radius=200)
     pen = Pen(pen_point, 1, pygame.Color(0, 0, 0))
     spiro = Spirograph([pen])
 
