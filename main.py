@@ -1,4 +1,4 @@
-import time
+from time import time as current_time
 from abc import ABC
 from enum import Enum
 from decimal import Decimal
@@ -167,7 +167,7 @@ class Spirograph:
         screen.fill("white")
 
         # Render the spirograph:
-        render_start_time = time.time()
+        render_start_time = current_time()
 
         for pen in self.pens:
             time_range = frange(0, pen.periodicity, 1/Decimal(temporal_resolution))
@@ -176,7 +176,7 @@ class Spirograph:
             pygame.draw.lines(screen, pen.colour, True, convert_coordinate_list(positions), width=pen.width)
 
         if debug:
-            render_stop_time = time.time()
+            render_stop_time = current_time()
             print(f"Render took {(render_stop_time - render_start_time) * FPS:.1f} frames")
 
         while running:
