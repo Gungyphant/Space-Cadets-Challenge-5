@@ -1,8 +1,10 @@
+import os
 from time import time as current_time
 from abc import ABC
 from enum import Enum
 from decimal import Decimal
 
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"  # Stop pygame printing to console on startup
 import pygame
 
 from utils import frange, lcm, PreciseNumber, Number, sin, cos, pi
