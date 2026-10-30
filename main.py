@@ -91,7 +91,7 @@ class Point(Object):
     def __init__(self, wheel: BaseWheel, radius: PreciseNumber, offset: PreciseNumber = 0):
         """:param wheel: The Wheel which the point is anchored to
         :param radius: The distance between the center of the Wheel and the Point
-        :param offset: The Point's starting offset from directly up, in radians
+        :param offset: The Point's starting offset from directly up, as a proportion of the Wheel
         """
         self.wheel = wheel
         self.radius = radius
@@ -100,7 +100,7 @@ class Point(Object):
 
     def get_pos(self, time: PreciseNumber) -> tuple[PreciseNumber, PreciseNumber]:
         # Points rotate around the center of their wheel
-        angle = (self.wheel.speed * 2 * pi) * self.wheel.direction.value * time + self.offset  # *2pi converts rps to rad/s
+        angle = (self.wheel.speed * self.wheel.direction.value * time + self.offset) * 2 * pi  # *2pi converts rps to rad/s
         wheel_x, wheel_y = self.wheel.get_pos(time)
         x, y = wheel_x + self.radius * sin(angle), wheel_y + self.radius * cos(angle)
         return x, y
