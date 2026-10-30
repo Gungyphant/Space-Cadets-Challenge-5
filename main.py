@@ -192,38 +192,3 @@ class Spirograph:
             clock.tick(FPS)
 
         pygame.quit()
-
-
-def circle():
-    root = RootWheel(Direction.CLOCKWISE, speed=1)
-    pen_point = Point(root, radius=200)
-    pen = Pen(pen_point, 1, pygame.Color(0, 0, 0))
-    spiro = Spirograph([pen])
-
-    spiro.display(debug=True)
-
-
-def ellipse():
-    root = RootWheel(Direction.CLOCKWISE, speed=1)
-    inner_wheel_anchor = Point(root, radius=200)
-    inner_wheel = Wheel(inner_wheel_anchor, Direction.COUNTERCLOCKWISE, speed=1)
-    pen_point = Point(inner_wheel, radius=50)
-    pen = Pen(pen_point, 1, pygame.Color(0, 0, 0))
-    spiro = Spirograph([pen])
-
-    spiro.display(debug=True)
-
-
-def four_pointed_rounded_star():
-    root = RootWheel(Direction.CLOCKWISE, speed=1)
-    inner_wheel_anchor = Point(root, radius=200)
-    inner_wheel = Wheel(inner_wheel_anchor, Direction.COUNTERCLOCKWISE, speed=3)
-    pen_point = Point(inner_wheel, radius=50)
-    pen = Pen(pen_point, 1, pygame.Color(0, 0, 0))
-    spiro = Spirograph([pen])
-
-    spiro.display(debug=True)
-
-
-if __name__ == "__main__":
-    four_pointed_rounded_star()
