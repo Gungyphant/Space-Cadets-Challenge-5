@@ -1,4 +1,5 @@
 import os
+from functools import cache
 from time import time as current_time
 from abc import ABC
 from enum import Enum
@@ -24,6 +25,8 @@ FPS = 60
 class Object(ABC):
     """Abstract base class for any object which has a position"""
     periodicity: int  # How often the object's state resets
+
+    @cache
     def get_pos(self, time: PreciseNumber) -> tuple[PreciseNumber, PreciseNumber]:
         """Get the position of the Object at a time
 
@@ -190,5 +193,38 @@ class Spirograph:
             pygame.display.flip()
 
             clock.tick(FPS)
+
+        pygame.quit()
+
+    def draw(self, temporal_resolution: Number = 1000) -> None:
+        """Create a window to draw the Spirograph in real time
+
+        :param temporal_resolution: The frequency (in 'Hz') to calculate the position of the pens. Defaults to 1000Hz
+        """
+        pygame.init()
+        screen = pygame.display.set_mode(RESOLUTION)
+        clock = pygame.time.Clock()
+        running = True
+
+        screen.fill("white")
+
+        time = 0
+        delta_time = 1/Decimal(temporal_resolution)
+
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    # Window closed
+                    running = False
+
+            # Render the spiro
+            for pen in self.pens:
+                # print(pen.colour, convert_coordinates(pen.get_pos(time)))
+                pygame.draw.aaline(screen, pen.colour, convert_coordinates(pen.get_pos(time)), convert_coordinates(pen.get_pos(time + delta_time)))
+            time += delta_time
+
+            pygame.display.flip()
+
+            dt = clock.tick(FPS)
 
         pygame.quit()
