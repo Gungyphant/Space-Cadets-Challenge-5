@@ -3,3 +3,5 @@ This is my solution to Space Cadets Challenge 5, where we must make a spirograph
 >
 
 Spirographs can either be rendered and then displayed, via Spirograph.render, or drawn in realtime via Spirograph.draw
+
+Spirographs are made of a list of Pens, each of which is attached to a Point, which is itself on a Wheel. Wheels are anchored to Points, with the exception of the Root Wheel, which is anchored at the origin
