@@ -58,7 +58,7 @@ def spirograph(debug: bool = False):
     Spirograph(pens).draw(temporal_resolution=10000)
 
 
-def five_circles(debug: bool = False):
+def five_wheels(debug: bool = False):
     wheel = root = RootWheel(Direction.CLOCKWISE, speed=1)
     pens = []
     for speed in range(2, 5 + 1):
@@ -72,8 +72,8 @@ def five_circles(debug: bool = False):
 
 
 if __name__ == "__main__":
-    circle()
+    # circle()
     # ellipse()
     # triple_fprs()
     # spirograph()
-    five_circles()
+    five_wheels()
