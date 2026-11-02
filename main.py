@@ -220,7 +220,7 @@ class Spirograph:
             # Render the spiro
             for pen in self.pens:
                 # print(pen.colour, convert_coordinates(pen.get_pos(time)))
-                pygame.draw.aaline(screen, pen.colour, convert_coordinates(pen.get_pos(time)), convert_coordinates(pen.get_pos(time + delta_time)))
+                pygame.draw.line(screen, pen.colour, convert_coordinates(pen.get_pos(time)), convert_coordinates(pen.get_pos(time + delta_time)), width=pen.width)
             time += delta_time
 
             pygame.display.flip()
